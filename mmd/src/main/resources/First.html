@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+  <p>Name : <input type="text" ng-model="name"></p>
+  <h1>Hello {{name}}</h1>
+  </hr>
+  </hr>
+  <p> Showing data from db </p>
+  <span>{{myWelcome[0].fileImage}}</span>
+  
+  <div>
+  <img ng-src="data:image/jpeg;base64,{{myWelcome[0].fileImage}}"/>
+  
+</div>
+</div>
+
+
+
+<script>
+var app = angular.module('myApp', []);
+
+app.controller('myCtrl', function($scope, $http) {
+    $http.get("http://localhost:8099/user")
+    .then(function(response) {
+        $scope.myWelcome = response.data;
+    });
+	
+	
+	
+});
+</script>
+
+</body>
+</html>
+
